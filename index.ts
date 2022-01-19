@@ -23,11 +23,16 @@ const headerMatchPlanablePattern = (parsed: ExtendedCommit) => {
       "header must be in format '✅ [P-11] Replace footer' or '✅ Replace footer'",
     ];
   }
+  return [true, ""];
+};
+
+const ticketPattern = (parsed: ExtendedCommit) => {
+  const { ticket } = parsed;
   if (ticket) {
     if (!planableTicket.test(ticket)) {
       return [
         false,
-        "ticket must be in format of a valid Linear issue: [P-11]",
+        "ticket must be in format of a valid Linear issue, for example: [P-11]",
       ];
     }
   }
@@ -43,8 +48,7 @@ const explainedTypeEnum: Rule<string[]> = (
   if (type && expectedValue && !expectedValue.includes(type)) {
     return [
       false,
-      `type must be one of ${expectedValue}
-  see https://www.notion.so/planable/Emojis-in-commit-messages-7ff175b3d2d442e089c2a4b583cd8383`,
+      `type must be one of ${expectedValue}.\nPlease check https://www.notion.so/planable/Emojis-in-commit-messages-7ff175b3d2d442e089c2a4b583cd8383`,
     ];
   }
   return [true, ""];
@@ -67,34 +71,37 @@ const planableConfig: UserConfig = {
       rules: {
         // @ts-ignore
         "header-match-planable-pattern": headerMatchPlanablePattern,
+        // @ts-ignore
+        "ticket-match-pattern": ticketPattern,
         "explained-type-enum": explainedTypeEnum,
       },
     },
   ],
   rules: {
     "header-match-planable-pattern": [2, "always"],
+    "ticket-match-pattern": [2, "always"],
     "type-empty": [2, "never"],
     "explained-type-enum": [
       2,
       "always",
       [
-        "✅ ",
-        "🚧 ",
-        "📓 ",
-        "🐞 ",
-        "🚨 ",
-        "👌 ",
-        "⚡️ ",
-        "⬆️ ",
-        "⬇️ ",
-        "✏️ ",
-        "♻️ ",
-        "⭐️ ",
-        "✨ ",
-        "🛠 ",
-        "📦 ",
-        "🌈 ",
-        "🔀 ",
+        "✅",
+        "🚧",
+        "📓",
+        "🐞",
+        "🚨",
+        "👌",
+        "⚡️",
+        "⬆️",
+        "⬇️",
+        "✏️",
+        "♻️",
+        "⭐️",
+        "✨",
+        "🛠",
+        "📦",
+        "🌈",
+        "🔀",
       ],
     ],
     "subject-case": [2, "always", "sentence-case"],
