@@ -1,1 +1,1 @@
-module.exports = { extends: ["./index"] };
+module.exports = { extends: ["./dist/index"] };
