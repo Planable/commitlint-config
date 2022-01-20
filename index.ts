@@ -19,7 +19,6 @@ const subjectThatDoesNotStartsWithBracket = /([^[\d\s][a-zA-Z].*)/;
 
 const headerMatchPlanablePattern: Rule = (parsed: Commit) => {
   const { type, ticket, subject } = parsed;
-  console.log({ parsed });
   if (type === null && ticket === null && subject === null) {
     return [
       false,
@@ -53,15 +52,6 @@ const explainedTypeEnum: Rule<string[]> = (
   }
   return [true];
 };
-
-const r = new RegExp(
-  anyEmojiWithSpaceAfter.source +
-    optionalPlanableTicketWithSpaceAfter.source +
-    subjectThatDoesNotStartsWithBracket.source,
-  "u"
-);
-
-console.log({ r });
 
 const planableConfig: UserConfig = {
   helpUrl:
