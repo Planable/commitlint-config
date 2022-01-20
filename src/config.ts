@@ -81,7 +81,6 @@ export const parserPreset: LintOptions = {
 export const rules: QualifiedRules = {
   "header-match-planable-pattern": [2, "always"],
   "ticket-match-pattern": [2, "always"],
-  "type-empty": [2, "never"],
   "explained-type-enum": [
     2,
     "always",
