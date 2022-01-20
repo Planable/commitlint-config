@@ -1,8 +1,10 @@
 import {
   Commit,
+  LintOptions,
+  Plugin,
+  QualifiedRules,
   Rule,
   RuleConfigCondition,
-  UserConfig,
 } from "@commitlint/types";
 
 declare module "@commitlint/types" {
@@ -53,58 +55,55 @@ const explainedTypeEnum: Rule<string[]> = (
   return [true];
 };
 
-const planableConfig: UserConfig = {
-  helpUrl:
-    "https://www.notion.so/planable/Emojis-in-commit-messages-7ff175b3d2d442e089c2a4b583cd8383",
-  parserPreset: {
-    parserOpts: {
-      headerPattern: new RegExp(
-        anyEmojiWithSpaceAfter.source +
-          optionalPlanableTicketWithSpaceAfter.source +
-          subjectThatDoesNotStartsWithBracket.source,
-        "u"
-      ),
-      headerCorrespondence: ["type", "ticket", "subject"],
-    },
-  },
-  plugins: [
-    {
-      rules: {
-        "header-match-planable-pattern": headerMatchPlanablePattern,
-        "ticket-match-pattern": ticketPattern,
-        "explained-type-enum": explainedTypeEnum,
-      },
-    },
-  ],
+export const planablePlugin: Plugin = {
   rules: {
-    "header-match-planable-pattern": [2, "always"],
-    "ticket-match-pattern": [2, "always"],
-    "type-empty": [2, "never"],
-    "explained-type-enum": [
-      2,
-      "always",
-      [
-        "✅",
-        "🚧",
-        "📓",
-        "🐞",
-        "🚨",
-        "👌",
-        "⚡️",
-        "⬆️",
-        "⬇️",
-        "✏️",
-        "♻️",
-        "⭐️",
-        "✨",
-        "🛠",
-        "📦",
-        "🌈",
-        "🔀",
-      ],
-    ],
-    "subject-case": [2, "always", "sentence-case"],
+    "header-match-planable-pattern": headerMatchPlanablePattern,
+    "ticket-match-pattern": ticketPattern,
+    "explained-type-enum": explainedTypeEnum,
   },
 };
 
-export = planableConfig;
+export const parserPreset: LintOptions = {
+  parserOpts: {
+    headerPattern: new RegExp(
+      anyEmojiWithSpaceAfter.source +
+        optionalPlanableTicketWithSpaceAfter.source +
+        subjectThatDoesNotStartsWithBracket.source,
+      "u"
+    ),
+    headerCorrespondence: ["type", "ticket", "subject"],
+  },
+  plugins: {
+    planable: planablePlugin,
+  },
+};
+
+export const rules: QualifiedRules = {
+  "header-match-planable-pattern": [2, "always"],
+  "ticket-match-pattern": [2, "always"],
+  "type-empty": [2, "never"],
+  "explained-type-enum": [
+    2,
+    "always",
+    [
+      "✅",
+      "🚧",
+      "📓",
+      "🐞",
+      "🚨",
+      "👌",
+      "⚡️",
+      "⬆️",
+      "⬇️",
+      "✏️",
+      "♻️",
+      "⭐️",
+      "✨",
+      "🛠",
+      "📦",
+      "🌈",
+      "🔀",
+    ],
+  ],
+  "subject-case": [2, "always", "sentence-case"],
+};
