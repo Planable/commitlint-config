@@ -15,6 +15,8 @@ describe("Invalid commits", () => {
     ["Not begin with emoji", "_✅ [P-4605] Add tests", "header-match-planable-pattern"],
     ["Suject starts with non letter", "✅ [P-4605] 5dd tests", "header-match-planable-pattern"],
     ["Ticket bracket not closed", "✅ [P-4605 Add tests", "header-match-planable-pattern"],
+    ["Multiple square brackets", "🚧 [Draft] [P-11] Some commit message", "ticket-match-pattern"],
+    ["Ticket not ending with number", "🚧 [P-11 draft] Some commit message", "ticket-match-pattern"],
   ])(
     "%s: %p should return %p error",
     // @ts-ignore
