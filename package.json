@@ -1,6 +1,6 @@
 {
   "name": "@planable/commitlint-config",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Commitlint configs used in Planable projects",
   "main": "dist/index.js",
   "files": [
