@@ -1,3 +1,8 @@
 node_modules
 dist
 package-lock.json
+/.husky
+/.eslintrc.js
+/jest.config.js
+/commitlint.config.js
+/tsconfig.json
