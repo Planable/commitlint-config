@@ -9,6 +9,7 @@
   "scripts": {
     "prepare": "husky install && npm run build",
     "build": "tsc",
+    "eslint": "npx eslint . --fix",
     "test": "jest"
   },
   "author": "Planable",
@@ -18,6 +19,9 @@
     "@commitlint/lint": "^16.0.0",
     "@commitlint/types": "^16.0.0",
     "@types/jest": "^27.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "eslint": "^8.18.0",
     "husky": "^7.0.4",
     "jest": "^27.4.7",
     "ts-jest": "^27.1.3",
