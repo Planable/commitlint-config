@@ -100,6 +100,7 @@ export const rules: QualifiedRules = {
       "⭐️",
       "✨",
       "🛠️",
+      "🛠",
       "📦",
       "🌈",
       "🔀",
