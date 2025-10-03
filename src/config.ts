@@ -107,6 +107,7 @@ export const rules: QualifiedRules = {
       "📦",
       "🌈",
       "🔀",
+      "🤖",
     ],
   ],
   "subject-case": [2, "always", "sentence-case"],
