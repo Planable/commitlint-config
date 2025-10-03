@@ -57,3 +57,5 @@ echo "module.exports = { extends: ['@planable'] };" > commitlint.config.js
 🌈 - UI improvement
 
 🔀 - Merge (can/should be added by amending a merge after it has been commited)
+
+🤖 - AI / background automation (agent tasks, AI-related changes, automated updates)
